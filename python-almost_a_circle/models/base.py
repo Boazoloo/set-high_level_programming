@@ -2,6 +2,7 @@
 """Base class."""
 
 import json
+import turtle
 
 
 class Base:
@@ -34,3 +35,42 @@ class Base:
 
         with open(cls.__name__ + ".json", "w") as file:
             file.write(cls.to_json_string(list_dicts))
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Open a window and draw all rectangles and squares."""
+        screen = turtle.Screen()
+        screen.title("Rectangles and Squares")
+
+        pen = turtle.Turtle()
+        pen.speed(0)
+
+        for rectangle in list_rectangles:
+            pen.penup()
+            pen.goto(rectangle.x, rectangle.y)
+            pen.pendown()
+
+            pen.forward(rectangle.width)
+            pen.right(90)
+            pen.forward(rectangle.height)
+            pen.right(90)
+            pen.forward(rectangle.width)
+            pen.right(90)
+            pen.forward(rectangle.height)
+            pen.right(90)
+
+        for square in list_squares:
+            pen.penup()
+            pen.goto(square.x, square.y)
+            pen.pendown()
+
+            pen.forward(square.size)
+            pen.right(90)
+            pen.forward(square.size)
+            pen.right(90)
+            pen.forward(square.size)
+            pen.right(90)
+            pen.forward(square.size)
+            pen.right(90)
+
+        turtle.done()
